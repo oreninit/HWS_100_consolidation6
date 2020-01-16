@@ -13,6 +13,11 @@
 		BA0D440F23CED7BE00EA9692 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA0D440D23CED7BE00EA9692 /* Main.storyboard */; };
 		BA0D441123CED7C100EA9692 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA0D441023CED7C100EA9692 /* Assets.xcassets */; };
 		BA0D441423CED7C100EA9692 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA0D441223CED7C100EA9692 /* LaunchScreen.storyboard */; };
+		BA0D441C23CED7EC00EA9692 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0D441B23CED7EC00EA9692 /* Country.swift */; };
+		BA0D441E23CED9D900EA9692 /* Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0D441D23CED9D900EA9692 /* Countries.swift */; };
+		BA0D442023CEDDF600EA9692 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0D441F23CEDDF600EA9692 /* DetailViewController.swift */; };
+		BA0D442423CEE1A300EA9692 /* TableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0D442323CEE1A300EA9692 /* TableModel.swift */; };
+		BA0D442823D029FF00EA9692 /* CoutryDetailTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0D442723D029FF00EA9692 /* CoutryDetailTableModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		BA0D441023CED7C100EA9692 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA0D441323CED7C100EA9692 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA0D441523CED7C100EA9692 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BA0D441B23CED7EC00EA9692 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		BA0D441D23CED9D900EA9692 /* Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countries.swift; sourceTree = "<group>"; };
+		BA0D441F23CEDDF600EA9692 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		BA0D442323CEE1A300EA9692 /* TableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableModel.swift; sourceTree = "<group>"; };
+		BA0D442723D029FF00EA9692 /* CoutryDetailTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoutryDetailTableModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,13 +66,18 @@
 		BA0D440623CED7BE00EA9692 /* Countries */ = {
 			isa = PBXGroup;
 			children = (
+				BA0D442323CEE1A300EA9692 /* TableModel.swift */,
 				BA0D440723CED7BE00EA9692 /* AppDelegate.swift */,
 				BA0D440923CED7BE00EA9692 /* SceneDelegate.swift */,
 				BA0D440B23CED7BE00EA9692 /* ViewController.swift */,
+				BA0D441F23CEDDF600EA9692 /* DetailViewController.swift */,
+				BA0D442723D029FF00EA9692 /* CoutryDetailTableModel.swift */,
 				BA0D440D23CED7BE00EA9692 /* Main.storyboard */,
 				BA0D441023CED7C100EA9692 /* Assets.xcassets */,
 				BA0D441223CED7C100EA9692 /* LaunchScreen.storyboard */,
 				BA0D441523CED7C100EA9692 /* Info.plist */,
+				BA0D441B23CED7EC00EA9692 /* Country.swift */,
+				BA0D441D23CED9D900EA9692 /* Countries.swift */,
 			);
 			path = Countries;
 			sourceTree = "<group>";
@@ -138,8 +153,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA0D441C23CED7EC00EA9692 /* Country.swift in Sources */,
+				BA0D442823D029FF00EA9692 /* CoutryDetailTableModel.swift in Sources */,
 				BA0D440C23CED7BE00EA9692 /* ViewController.swift in Sources */,
 				BA0D440823CED7BE00EA9692 /* AppDelegate.swift in Sources */,
+				BA0D442023CEDDF600EA9692 /* DetailViewController.swift in Sources */,
+				BA0D442423CEE1A300EA9692 /* TableModel.swift in Sources */,
+				BA0D441E23CED9D900EA9692 /* Countries.swift in Sources */,
 				BA0D440A23CED7BE00EA9692 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
