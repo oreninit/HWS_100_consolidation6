@@ -54,7 +54,7 @@ extension ViewController {
 
                 return cell
         }
-        self.dataSource.defaultRowAnimation = .fade
+        dataSource.defaultRowAnimation = .automatic
     }
 
     func updateUI(items: [Country], animated: Bool) {
