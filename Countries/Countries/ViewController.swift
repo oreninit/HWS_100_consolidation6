@@ -8,41 +8,31 @@
 
 import UIKit
 
-class ViewController: UITableViewController {
+private enum Section: String {
+    case countries
+}
 
-    let data = Countries()
-    var countries: [Country] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+class ViewController: UITableViewController {
+    private let data = Countries()
     
+    fileprivate var dataSource: UITableViewDiffableDataSource<Section, Country>!
+    fileprivate var snapshot: NSDiffableDataSourceSnapshot<Section, Country>!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Coutries"
         navigationController?.navigationBar.prefersLargeTitles = true
-        createSearch()
-        data.load { [weak self] in
-            self?.countries = self?.data.countries ?? []
+        configureSearch()
+        configureDataSource()
+        data.load { [weak self] result in
+            self?.updateUI(items: result, animated: false)
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return countries.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "country", for: indexPath)
-        let country = countries[indexPath.row]
-        cell.textLabel?.text = country.name
-        cell.detailTextLabel?.text = [country.subregion, country.region].compactMap({ $0.count > 0 ? $0 : nil }).joined(separator: ", ")
-        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let country = countries[indexPath.row]
+        guard let country = dataSource.itemIdentifier(for: indexPath) else { return }
         let vc = DetailViewController.create(storyboard: storyboard,
                                              data: data,
                                              country: country)
@@ -50,8 +40,33 @@ class ViewController: UITableViewController {
     }
 }
 
+extension ViewController {
+    func configureDataSource() {
+        dataSource = UITableViewDiffableDataSource
+            <Section, Country>(tableView: tableView) {
+                (tableView: UITableView, indexPath: IndexPath, item: Country) -> UITableViewCell? in
+                
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: "country",
+                    for: indexPath)
+                cell.textLabel?.text = item.name
+                cell.detailTextLabel?.text = [item.subregion, item.region].compactMap({ $0.count > 0 ? $0 : nil }).joined(separator: ", ")
+
+                return cell
+        }
+        self.dataSource.defaultRowAnimation = .fade
+    }
+
+    func updateUI(items: [Country], animated: Bool) {
+        snapshot = NSDiffableDataSourceSnapshot<Section, Country>()
+        snapshot.appendSections([.countries])
+        snapshot.appendItems(items, toSection: .countries)
+        dataSource.apply(snapshot, animatingDifferences: animated)
+    }
+}
+
 extension ViewController: UISearchResultsUpdating {
-    func createSearch() {
+    func configureSearch() {
         let search = UISearchController(searchResultsController: nil)
         search.searchResultsUpdater = self
         search.obscuresBackgroundDuringPresentation = false
@@ -61,10 +76,10 @@ extension ViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text, !text.isEmpty else {
-            countries = data.countries
-            return
+            return updateUI(items: data.countries, animated: true)
         }
         
-        countries = data.countries.filter({ $0.name.contains(text) })
+        let countries = data.countries.filter({ $0.name.contains(text) })
+        return updateUI(items: countries, animated: true)
     }
 }

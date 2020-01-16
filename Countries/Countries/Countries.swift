@@ -11,9 +11,9 @@ import Foundation
 class Countries {
     private(set) var countries = [Country]()
     
-    func load(completion: @escaping () -> Void) {
+    func load(completion: @escaping ([Country]) -> Void) {
         guard countries.count == 0 else {
-            completion()
+            completion(countries)
             return
         }
         
@@ -31,7 +31,7 @@ class Countries {
                 
                 DispatchQueue.main.async {
                     self?.countries = list
-                    completion()
+                    completion(list)
                 }
             } catch {
                 print(error)
